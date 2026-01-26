@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sunrise Vibe</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
+    <style>
+        @keyframes fadeIn { 0% { opacity: 0; transform: translateY(20px); } 100% { opacity: 1; transform: translateY(0); } }
+        @keyframes shimmer { 0%, 100% { opacity: 0.8; transform: scale(1); } 50% { opacity: 1; transform: scale(1.02); } }
+        @keyframes glow { 0%, 100% { box-shadow: 0 0 20px rgba(255, 223, 0, 0.5); } 50% { box-shadow: 0 0 40px rgba(255, 223, 0, 0.8); } }
+        @keyframes rise { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+        .shimmer { animation: shimmer 3s ease-in-out infinite; }
+        .glow { animation: glow 2s ease-in-out infinite; }
+        .rise { animation: rise 4s ease-in-out infinite; }
+        .fade-in { animation: fadeIn 1s ease-in-out; }
+        .dark-mode { background: #2c1810; }
+        .light-mode { background: #fff8e7; }
+        .bg-overlay { background: linear-gradient(rgba(255, 140, 0, 0.2), rgba(255, 69, 0, 0.3)); }
+        canvas { position: absolute; top: 0; left: 0; z-index: 0; }
+    </style>
+</head>
+<body class="min-h-screen bg-gradient-to-br from-orange-300 via-yellow-300 to-pink-300 flex flex-col items-center justify-center px-4 transition-colors duration-300">
+    <canvas id="sunrise-canvas"></canvas>
+    <div id="bg-wrapper" class="absolute inset-0 bg-overlay"></div>
+    <h1 id="sunrise-title" class="text-4xl sm:text-6xl font-bold text-orange-800 fade-in text-center relative z-10">Sunrise Vibe</h1>
+    <p id="sunrise-desc" class="text-lg sm:text-xl mt-4 text-orange-700 fade-in text-center relative z-10">Warm, bright, and hopeful!</p>
+    <a id="sunrise-button" href="index.html" class="mt-8 bg-orange-500 hover:bg-orange-600 text-white font-bold py-2 px-4 rounded glow relative z-10" aria-label="Back to main hub">Back to Main</a>
+    <script src="assets/script.js"></script>
+    <script>
+        applyPageContent('sunrise', document.getElementById('sunrise-title'), document.getElementById('sunrise-desc'), document.getElementById('bg-wrapper'), document.getElementById('sunrise-button'));
+        initCanvasBackground('sunrise-canvas', 'stars');
+        document.addEventListener('click', (e) => {
+            playSound('sunrise');
+        });
+    </script>
+</body>
+</html>
